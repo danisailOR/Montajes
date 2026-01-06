@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Factory, Shield, Ruler, HardHat, ChevronRight, X, CheckCircle2 } from 'lucide-react';
-import { MOCK_PROJECTS } from '../constants';
 
 interface ServiceDetail {
   title: string;
@@ -17,54 +16,48 @@ const Home: React.FC = () => {
 
   const services: ServiceDetail[] = [
     { 
-      title: "Technical Engineering", 
-      icon: <Ruler className="w-8 h-8"/>, 
-      desc: "FEM modeling, hydraulic calculations, and ISO compliant 3D design.",
+      title: "Engineering", 
+      icon: <Ruler className="w-6 h-6"/>, 
+      desc: "ISO compliant calculations and 3D modeling.",
       scope: [
-        "Finite Element Method (FEM) analysis for structural stress",
-        "Hydraulic surge and head loss calculations",
-        "Piping Isometric (Isos) and 3D plant layout integration",
-        "Seismic and wind load structural calculations",
-        "Resin chemistry selection based on pH and temperature"
+        "FEM analysis for structural stress",
+        "Hydraulic surge & head loss",
+        "3D plant layout integration"
       ],
       useCases: [
-        "New chemical plant infrastructure",
-        "Expansion of desalination intake systems",
-        "Conversion of metallic systems to composites"
+        "Chemical plants",
+        "Desalination intake",
+        "Piping conversions"
       ]
     },
     { 
-      title: "Precision Fabrication", 
-      icon: <Factory className="w-8 h-8"/>, 
-      desc: "Filament winding and custom molding under strict QC environments.",
+      title: "Fabrication", 
+      icon: <Factory className="w-6 h-6"/>, 
+      desc: "Precision filament winding & custom molding.",
       scope: [
-        "Computer-controlled filament winding (up to DN 3000)",
-        "Hand lay-up for complex geometry fittings",
-        "Specialized chemical barriers (Vinyl Ester/Epoxy liners)",
-        "Precision abrasive-resistant inner liners for mining",
-        "Integrated structural flanges and mounting points"
+        "Filament winding (to DN 3000)",
+        "Hand lay-up for complex fittings",
+        "Chemical resistant liners"
       ],
       useCases: [
-        "High-pressure chemical transport",
-        "Large diameter water distribution",
-        "Custom-shaped exhaust manifolds"
+        "Aggressive fluid transport",
+        "Potable water networks",
+        "Exhaust manifolds"
       ]
     },
     { 
-      title: "Specialized Assembly", 
-      icon: <HardHat className="w-8 h-8"/>, 
-      desc: "On-site installation and lamination by certified master technicians.",
+      title: "Installation", 
+      icon: <HardHat className="w-6 h-6"/>, 
+      desc: "Certified assembly and on-site lamination.",
       scope: [
-        "Adhesive bonding and Butt-and-Strap joining",
-        "Certified secondary lamination for field joints",
-        "Hydrostatic pressure testing and leakage certification",
-        "Installation on structural pipe racks or underground",
-        "Supervision and commissioning of full systems"
+        "Adhesive & Butt-and-Strap joining",
+        "Field joint lamination",
+        "Hydrostatic pressure testing"
       ],
       useCases: [
-        "Turnkey plant installations",
-        "Rapid repair and composite wrapping",
-        "On-site retrofitting of existing infrastructure"
+        "Turnkey EPC projects",
+        "Retrofitting assets",
+        "Underground networks"
       ]
     }
   ];
@@ -186,65 +179,66 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Service Modal Overlay */}
+      {/* Optimized Service Modal for Mobile */}
       {selectedService && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center px-4 py-6 sm:p-0">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           <div 
-            className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"
+            className="absolute inset-0 bg-slate-950/90 backdrop-blur-md"
             onClick={() => setSelectedService(null)}
           ></div>
-          <div className="glass-panel w-full max-w-2xl rounded-3xl overflow-hidden relative border-white/10 shadow-2xl animate-in fade-in zoom-in duration-300">
+          <div className="glass-panel w-full max-w-[340px] md:max-w-md max-h-[85vh] overflow-y-auto rounded-3xl relative border-white/10 shadow-2xl animate-in fade-in zoom-in duration-200">
             <button 
               onClick={() => setSelectedService(null)}
-              className="absolute top-6 right-6 p-2 text-slate-400 hover:text-white transition-colors z-10"
+              className="absolute top-4 right-4 p-2 text-slate-400 hover:text-white transition-colors z-20"
             >
-              <X className="w-6 h-6" />
+              <X className="w-5 h-5" />
             </button>
             
-            <div className="p-8 md:p-12">
-              <div className="w-16 h-16 bg-blue-500/10 border border-blue-500/20 rounded-2xl flex items-center justify-center text-blue-500 mb-8">
-                {selectedService.icon}
+            <div className="p-6 md:p-8">
+              <div className="flex items-center space-x-4 mb-6">
+                <div className="w-10 h-10 bg-blue-500/20 border border-blue-500/30 rounded-xl flex items-center justify-center text-blue-500 shrink-0">
+                  {React.cloneElement(selectedService.icon as React.ReactElement<any>, { className: "w-5 h-5" })}
+                </div>
+                <h3 className="text-xl md:text-2xl font-black text-white">{selectedService.title}</h3>
               </div>
               
-              <h3 className="text-3xl font-black text-white mb-4">{selectedService.title}</h3>
-              <p className="text-slate-400 font-light mb-10 leading-relaxed">
+              <p className="text-slate-400 text-xs font-light mb-6 leading-relaxed">
                 {selectedService.desc}
               </p>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+              <div className="space-y-6">
                 <div>
-                  <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-blue-500 mb-6">Technical Scope</h4>
-                  <ul className="space-y-4">
+                  <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-blue-500 mb-3">Core Scope</p>
+                  <ul className="space-y-2">
                     {selectedService.scope.map((item, i) => (
-                      <li key={i} className="flex items-start text-xs text-slate-300 font-medium group">
-                        <CheckCircle2 className="w-4 h-4 text-blue-500 mr-3 shrink-0 mt-0.5" />
+                      <li key={i} className="flex items-start text-[11px] text-slate-300">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-blue-500 mr-2 shrink-0 mt-0.5" />
                         {item}
                       </li>
                     ))}
                   </ul>
                 </div>
+                
                 <div>
-                  <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-blue-500 mb-6">Applications</h4>
-                  <ul className="space-y-4">
+                  <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-blue-500 mb-3">Sectors</p>
+                  <div className="flex flex-wrap gap-1.5">
                     {selectedService.useCases.map((item, i) => (
-                      <li key={i} className="flex items-start text-xs text-slate-300 font-medium">
-                        <div className="w-1.5 h-1.5 bg-blue-500/50 rounded-full mr-3 shrink-0 mt-1.5"></div>
+                      <span key={i} className="px-2 py-0.5 bg-white/5 border border-white/10 rounded text-[9px] text-slate-400 font-medium">
                         {item}
-                      </li>
+                      </span>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               </div>
               
-              <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6">
-                <p className="text-[10px] font-mono-technical text-slate-500 uppercase tracking-widest">Engineering Reference: EPC-{selectedService.title.split(' ')[0].toUpperCase()}</p>
+              <div className="mt-8 pt-6 border-t border-white/10">
                 <Link 
-                  to="/services" 
+                  to="/contact" 
                   onClick={() => setSelectedService(null)}
-                  className="w-full sm:w-auto px-8 py-3 bg-blue-600 hover:bg-blue-500 text-white text-[10px] font-black uppercase tracking-widest rounded-lg transition-all flex items-center justify-center"
+                  className="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white text-[10px] font-black uppercase tracking-[0.2em] rounded-xl transition-all flex items-center justify-center"
                 >
-                  Full Service Overview
-                  <ArrowRight className="ml-2 w-4 h-4" />
+                  Request Quote
+                  <ArrowRight className="ml-2 w-3.5 h-3.5" />
                 </Link>
               </div>
             </div>

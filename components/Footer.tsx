@@ -55,13 +55,8 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-slate-900 flex flex-col md:row justify-between items-center text-xs">
+        <div className="mt-16 pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center text-xs">
           <p>© {new Date().getFullYear()} Montajes PRFV Maroc S.A.R.L. All rights reserved.</p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-white">Legal Notice</a>
-            <a href="#" className="hover:text-white">Privacy Policy</a>
-            <a href="#" className="hover:text-white">Cookies</a>
-          </div>
         </div>
       </div>
     </footer>

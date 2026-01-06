@@ -101,6 +101,15 @@ const Navbar: React.FC = () => {
                 {item.label}
               </Link>
             ))}
+            <div className="pt-2">
+              <Link
+                to="/contact"
+                onClick={() => setIsOpen(false)}
+                className="block w-full text-center bg-blue-600 hover:bg-blue-500 text-white px-4 py-4 text-xs font-bold uppercase tracking-widest rounded-lg transition-all shadow-[0_10px_20px_rgba(37,99,235,0.2)]"
+              >
+                Request Quote
+              </Link>
+            </div>
           </div>
         </div>
       )}
