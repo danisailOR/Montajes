@@ -6,17 +6,7 @@ import { Settings, Droplets, Factory, HardHat, ShieldCheck, Ruler, Truck, Zap } 
 export const NAV_ITEMS: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { 
-    label: "Services", 
-    href: "/services",
-    subItems: [
-      { label: "Engineering & Design", href: "/services/engineering" },
-      { label: "Fabrication", href: "/services/fabrication" },
-      { label: "Supply & Logistics", href: "/services/supply" },
-      { label: "Installation", href: "/services/installation" },
-      { label: "Supervision", href: "/services/supervision" }
-    ]
-  },
+  { label: "Services", href: "/services" },
   { label: "Expertise", href: "/expertise" }
 ];
 

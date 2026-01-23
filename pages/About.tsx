@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Shield, Target, Users, Settings, ArrowRight, CheckCircle2, Factory, Ruler, HardHat, Zap, Search } from 'lucide-react';
+import { Shield, Target, Users, Settings, ArrowRight, CheckCircle2, Factory, Ruler, HardHat, Zap, Search, Droplets, Coins, Weight, Activity } from 'lucide-react';
 
 const About: React.FC = () => {
   const workflowSteps = [
@@ -36,6 +36,37 @@ const About: React.FC = () => {
     }
   ];
 
+  const materialAdvantages = [
+    {
+      title: "Immunity to Corrosion",
+      icon: <Shield className="w-8 h-8 text-blue-500" />,
+      compare: "Vs. Steel/Carbon Steel",
+      desc: "Unlike metallic systems, PRFV is non-electrolytic. It requires no cathodic protection or anti-corrosion coatings, even in high-salinity seawater or aggressive pH environments.",
+      points: ["Zero oxidation risk", "No pitting in chemical contact", "Marine-grade performance"]
+    },
+    {
+      title: "Weight & Installation",
+      icon: <Weight className="w-8 h-8 text-blue-500" />,
+      compare: "Vs. Traditional Metals",
+      desc: "At roughly 1/4 the weight of carbon steel, PRFV significantly reduces the cost of support structures, specialized transport, and on-site heavy machinery requirements.",
+      points: ["Lower structural loading", "Faster assembly cycles", "Manual handling capabilities"]
+    },
+    {
+      title: "Hydraulic Efficiency",
+      icon: <Droplets className="w-8 h-8 text-blue-500" />,
+      compare: "Vs. PVC & Concrete",
+      desc: "With a Hazen-Williams 'C' coefficient of 150, the ultra-smooth internal liner reduces friction loss, allowing for smaller pump sizes and lower lifetime energy consumption.",
+      points: ["Lower pumping costs", "Zero scale accumulation", "Reduced pressure drops"]
+    },
+    {
+      title: "Total Cost of Ownership",
+      icon: <Coins className="w-8 h-8 text-blue-500" />,
+      compare: "Lifecycle Economics",
+      desc: "While initial procurement may be higher than PVC, the 50+ year design life and near-zero maintenance spend result in the lowest TCO (Total Cost of Ownership) in industry.",
+      points: ["50-year service life", "Zero maintenance downtime", "High residual value"]
+    }
+  ];
+
   return (
     <div className="pt-20">
       {/* Hero Section */}
@@ -47,7 +78,7 @@ const About: React.FC = () => {
               Legacy of <br/><span className="text-blue-500">Excellence.</span>
             </h1>
             <p className="text-xl md:text-2xl text-slate-400 font-light leading-relaxed mb-12">
-              Established as a technical reference in Morocco, Montajes PRFV Maroc is more than a contractor. We are industrial partners specializing in composite resilience.
+              Established as a technical reference in Morocco, Montajes PRFV Morocco is more than a contractor. We are industrial partners specializing in composite resilience.
             </p>
           </div>
         </div>
@@ -78,6 +109,59 @@ const About: React.FC = () => {
                 We integrate seamlessly with major engineering firms and EPC contractors, delivering on-time technical results within complex project schedules.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why PRFV Section */}
+      <section className="py-32 relative overflow-hidden bg-slate-900/20">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none opacity-10">
+          <div className="absolute inset-0 blueprint-grid"></div>
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-24">
+            <div className="inline-flex items-center space-x-2 px-4 py-1.5 bg-blue-500/10 border border-blue-500/30 rounded-full text-blue-400 text-[10px] font-bold uppercase tracking-[0.3em] mb-6">
+              <Activity className="w-3.5 h-3.5" />
+              <span>Material Science comparison</span>
+            </div>
+            <h2 className="text-4xl md:text-6xl font-black text-white tracking-tight">Why <span className="text-blue-500">PRFV?</span></h2>
+            <p className="text-slate-400 font-light mt-6 max-w-2xl mx-auto leading-relaxed">
+              In heavy industry, the choice of material is a strategic capital expenditure decision. Composite systems are rapidly becoming the engineering standard for longevity.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {materialAdvantages.map((adv, idx) => (
+              <div key={idx} className="glass-panel p-10 rounded-[2.5rem] border-white/10 group hover:border-blue-500/40 transition-all duration-500">
+                <div className="flex flex-col md:flex-row md:items-start gap-8">
+                  <div className="w-16 h-16 bg-blue-500/10 border border-blue-500/20 rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                    {adv.icon}
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-mono-technical font-bold text-blue-500/60 uppercase tracking-widest block mb-2">{adv.compare}</span>
+                    <h4 className="text-2xl font-bold text-white mb-4">{adv.title}</h4>
+                    <p className="text-slate-400 text-sm leading-relaxed font-light mb-8">
+                      {adv.desc}
+                    </p>
+                    <ul className="grid grid-cols-1 gap-3">
+                      {adv.points.map((pt, pidx) => (
+                        <li key={pidx} className="flex items-center text-xs font-semibold text-slate-300">
+                          <CheckCircle2 className="w-4 h-4 text-blue-500 mr-3 shrink-0" />
+                          {pt}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-20 glass-panel p-8 md:p-12 rounded-[2rem] border-blue-500/20 text-center max-w-4xl mx-auto">
+            <h4 className="text-white font-bold text-xl mb-4">Engineering Verdict</h4>
+            <p className="text-slate-400 text-sm font-light leading-relaxed">
+              When analyzing the **Net Present Value (NPV)** of industrial assets, PRFV consistently yields a superior return on investment compared to steel (which requires constant painting/maintenance) or PVC (which lacks the structural strength for high-pressure industrial loads).
+            </p>
           </div>
         </div>
       </section>
@@ -168,15 +252,13 @@ const About: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="glass-panel p-16 rounded-[2.5rem] border-white/10 max-w-4xl mx-auto relative overflow-hidden group">
             <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-            <h2 className="text-3xl md:text-5xl font-black text-white mb-8 tracking-tight relative z-10">Local Roots. Global Rigor.</h2>
-            <p className="text-lg text-slate-400 mb-12 font-light max-w-2xl mx-auto relative z-10">
-              While our operations are centered in Tanger, our engineering standards and project management protocols are built on decades of international EPC experience.
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-8 tracking-tight relative z-10">Regional Reach. Global Rigor.</h2>
+            <p className="text-lg text-slate-400 mb-4 font-light max-w-2xl mx-auto relative z-10">
+              Our operations span the strategic industrial regions of Morocco, with a focus on delivering high-performance infrastructure to key sectors including mining, desalination, and chemical processing.
             </p>
-            <div className="flex justify-center relative z-10">
-              <button className="px-10 py-4 bg-white text-slate-900 font-black rounded-xl uppercase tracking-widest text-[11px] hover:bg-blue-500 hover:text-white transition-all transform hover:scale-105 shadow-2xl flex items-center">
-                Download Technical Brochure <ArrowRight className="ml-3 w-4 h-4" />
-              </button>
-            </div>
+            <p className="text-sm text-slate-500 italic relative z-10">
+              Our engineering standards and project management protocols are built on decades of international EPC experience.
+            </p>
           </div>
         </div>
       </section>

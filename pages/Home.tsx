@@ -1,7 +1,77 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Factory, Shield, Ruler, HardHat, ChevronRight, X, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Factory, Shield, Ruler, HardHat, ChevronRight, X, CheckCircle2, Activity, Zap } from 'lucide-react';
+
+/**
+ * Conceptual Hero Visual - Kinetic Industrial Network
+ * Uses SVG paths and animations to simulate an advanced PRFV piping grid.
+ */
+const HeroConceptualVisual = () => (
+  <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+    <style>{`
+      @keyframes flowMotion {
+        0% { stroke-dashoffset: 1000; }
+        100% { stroke-dashoffset: 0; }
+      }
+      @keyframes pulseGlow {
+        0%, 100% { opacity: 0.3; transform: scale(1); }
+        50% { opacity: 0.8; transform: scale(1.1); }
+      }
+      .path-flow {
+        stroke-dasharray: 50 150;
+        animation: flowMotion 15s linear infinite;
+      }
+      .node-glow {
+        animation: pulseGlow 4s infinite ease-in-out;
+      }
+    `}</style>
+    <svg width="100%" height="100%" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="heroBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.1" />
+          <stop offset="100%" stopColor="#1d4ed8" stopOpacity="0.4" />
+        </linearGradient>
+      </defs>
+      
+      {/* Background Grid Lines */}
+      <g stroke="white" strokeOpacity="0.05" strokeWidth="0.5">
+        {[...Array(20)].map((_, i) => (
+          <line key={`v-${i}`} x1={i * 80} y1="0" x2={i * 80} y2="900" />
+        ))}
+        {[...Array(12)].map((_, i) => (
+          <line key={`h-${i}`} x1="0" y1={i * 80} x2="1600" y2={i * 80} />
+        ))}
+      </g>
+
+      {/* Industrial Piping Paths */}
+      <g stroke="#3b82f6" strokeWidth="2" strokeOpacity="0.3">
+        {/* Large Main Pipe 1 */}
+        <path d="M-100 200 H400 V600 H800 V100 H1200 V400 H1700" className="path-flow" />
+        {/* Large Main Pipe 2 */}
+        <path d="M-100 800 H200 V300 H600 V700 H1000 V200 H1700" className="path-flow" style={{ animationDirection: 'reverse', animationDuration: '20s' }} />
+        {/* Branch Lines */}
+        <path d="M400 400 H700" className="path-flow" strokeOpacity="0.2" />
+        <path d="M1000 500 V850" className="path-flow" strokeOpacity="0.2" />
+      </g>
+
+      {/* Connection Nodes (Pulsing) */}
+      <g fill="#3b82f6">
+        <circle cx="400" cy="200" r="6" className="node-glow" />
+        <circle cx="400" cy="600" r="6" className="node-glow" style={{ animationDelay: '1s' }} />
+        <circle cx="800" cy="600" r="6" className="node-glow" style={{ animationDelay: '2s' }} />
+        <circle cx="800" cy="100" r="6" className="node-glow" style={{ animationDelay: '0.5s' }} />
+        <circle cx="1200" cy="100" r="6" className="node-glow" style={{ animationDelay: '1.5s' }} />
+        <circle cx="1200" cy="400" r="6" className="node-glow" style={{ animationDelay: '2.5s' }} />
+      </g>
+
+      {/* Structural Elements */}
+      <rect x="380" y="180" width="40" height="40" fill="none" stroke="#1e293b" strokeWidth="1" strokeOpacity="0.5" />
+      <rect x="780" y="580" width="40" height="40" fill="none" stroke="#1e293b" strokeWidth="1" strokeOpacity="0.5" />
+      <rect x="1180" y="80" width="40" height="40" fill="none" stroke="#1e293b" strokeWidth="1" strokeOpacity="0.5" />
+    </svg>
+  </div>
+);
 
 interface ServiceDetail {
   title: string;
@@ -66,20 +136,20 @@ const Home: React.FC = () => {
     <div className="relative">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        {/* Animated Background Elements */}
         <div className="absolute top-1/4 -left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-[120px] animate-pulse"></div>
         <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-blue-400/10 rounded-full blur-[120px] animate-pulse delay-1000"></div>
 
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80" 
-            alt="FRP Industrial Piping Network" 
-            className="w-full h-full object-cover opacity-20 grayscale brightness-50"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-transparent to-slate-950"></div>
-        </div>
+        {/* Custom SVG Background Visual */}
+        <HeroConceptualVisual />
+        
+        {/* Overlay Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-transparent to-slate-950 z-[1]"></div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="glass-panel max-w-4xl mx-auto p-12 md:p-16 rounded-3xl border-white/5 shadow-2xl">
+          <div className="glass-panel max-w-4xl mx-auto p-12 md:p-16 rounded-3xl border-white/5 shadow-2xl relative overflow-hidden group">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>
+            
             <div className="inline-flex items-center space-x-2 px-4 py-1.5 bg-blue-500/10 border border-blue-500/30 rounded-full text-blue-400 text-[10px] font-bold uppercase tracking-[0.3em] mb-8">
               <Shield className="w-3.5 h-3.5" />
               <span>Certified Industrial Standards</span>
@@ -105,27 +175,10 @@ const Home: React.FC = () => {
           </div>
         </div>
 
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce z-10">
           <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center p-1">
             <div className="w-1 h-2 bg-blue-500 rounded-full"></div>
           </div>
-        </div>
-      </section>
-
-      {/* Stats Bar */}
-      <section className="relative z-20 -mt-12 px-4">
-        <div className="max-w-6xl mx-auto glass-panel rounded-2xl py-10 px-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-center border-white/5">
-          {[
-            { label: "Engineering Excellence", val: "15+ Years" },
-            { label: "Successful Deliveries", val: "350+" },
-            { label: "Safety Record", val: "100%" },
-            { label: "Material Lifecycle", val: "50+ Yrs" }
-          ].map((stat, i) => (
-            <div key={i} className={i !== 3 ? 'md:border-r border-white/10' : ''}>
-              <p className="text-2xl md:text-3xl font-black text-white mb-1">{stat.val}</p>
-              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">{stat.label}</p>
-            </div>
-          ))}
         </div>
       </section>
 
